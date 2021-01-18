@@ -68,4 +68,10 @@
   color:rgb(222, 70, 222);;
 
 }
-
+.input-range__track--active, 
+.input-range__slider{
+  background-color: #FFD400 !important ;
+}
+.input-range__label--value{
+  color:#D342D3 !important;
+}
