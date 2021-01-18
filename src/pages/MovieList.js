@@ -100,6 +100,7 @@ const MovieList = ({ type }) => {
           minValue={0}
           value={ratingVal}
           onChange={(value) => sliderChange(value)}
+          className={'input-range__label--value input-range__track--active'}
         />
         Rating
       </div>
