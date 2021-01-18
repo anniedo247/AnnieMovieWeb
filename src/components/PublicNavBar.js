@@ -3,7 +3,7 @@ import { Navbar, Nav, NavDropdown, Form, FormControl } from "react-bootstrap";
 import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
 
-const PublicNavBar = ({handleSearchTermChange,searchTerm}) => {
+const PublicNavBar = ({handleSearchTermChange,searchTerm,handleSelect}) => {
   
   return (
     <Navbar
@@ -27,16 +27,12 @@ const PublicNavBar = ({handleSearchTermChange,searchTerm}) => {
           <Nav.Link as={Link} to="/movie/top_rated">
             Top Rated
           </Nav.Link>
-          <NavDropdown title="Sort" id="basic-nav-dropdown">
-            {/* <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item> */}
+          <NavDropdown title="Sort" id="basic-nav-dropdown" onSelect={handleSelect}>
+            <NavDropdown.Item eventKey="mostToLeastPopular">Most To Least Popular</NavDropdown.Item>
+            <NavDropdown.Item eventKey="leastToMostPopular">Least to Most Popular</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item eventKey="highestToLowestRating">Highest to Lowest Rating</NavDropdown.Item>
+            <NavDropdown.Item eventKey="lowestToHighestRating">Lowest to Highest Rating</NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <Form inline>

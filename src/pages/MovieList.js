@@ -18,6 +18,7 @@ const MovieList = ({ type }) => {
   const [ratingVal, setRatingVal] = useState({ min: 0, max: 10 });
   const [searchTerm, setSearchTerm] = useState("");
   const [filterMovies, setFilterMovies] = useState([]);
+  const [sortType, setSortType] = useState('mostToLeastPopular');
   let history = useHistory();
 
   useEffect(() => {
@@ -63,11 +64,34 @@ const MovieList = ({ type }) => {
     setRatingVal(value);
   };
 
+  useEffect(()=>{
+    const copyMovies = [...movies]
+    switch(sortType){
+        case 'leastToMostPopular':
+            copyMovies.sort((a,b)=>a.popularity-b.popularity);
+            break;
+        case 'highestToLowestRating':
+            copyMovies.sort((a,b) => b.vote_average - a.vote_average);
+            break;
+        case 'lowestToHighestRating':
+            copyMovies.sort((a,b) => a.vote_average - b.vote_average);
+            break;
+        default:
+            break;
+    }
+    setFilterMovies(copyMovies);
+  },[sortType,movies])
+
+  const handleSelectSort=(e)=>{
+    setSortType(e);
+  }
+
   return (
     <div>
       <PublicNavBar
         handleSearchTermChange={handleSearchTermChange}
         searchTerm={searchTerm}
+        handleSelect={handleSelectSort}
       />
 
       <div className="range">
