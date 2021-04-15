@@ -6,8 +6,8 @@ import Header from "../components/Header";
 import "../App.css";
 import YouTube from "@u-wave/react-youtube";
 
-const API_KEY = "3f8af128099b08ebdb593c5711c409c3";
-const API_URL = "https://api.themoviedb.org/3";
+const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
+const API_URL = process.env.REACT_APP_TMDB_API_URL;
 
 const MovieDetail = () => {
   const { id } = useParams();
