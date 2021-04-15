@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Container, Media, Modal } from "react-bootstrap";
-import PublicNavBar from "../components/PaginationBar";
+import PublicNavBar from "../components/PublicNavBar";
 import Header from "../components/Header";
 import "../App.css";
 import YouTube from "@u-wave/react-youtube";
@@ -42,13 +42,15 @@ const MovieDetail = () => {
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   return (
-    <div>     
-      <div className="mt-5">
+    <div>  
+      <PublicNavBar/>   
+      <div>
+        
         <Container>
           <Media style={{ backgroundColor: "white" }}>
             <img
-              width={300}
-              className="mr-3"
+
+              className="mr-3 movie-detail-img"
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt="Generic placeholder"
             />
@@ -100,7 +102,6 @@ const MovieDetail = () => {
             </Media.Body>
           </Media>
         </Container>
-        <Container>" "</Container>
       </div>
     </div>
   );

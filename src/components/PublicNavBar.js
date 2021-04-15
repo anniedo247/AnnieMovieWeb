@@ -18,13 +18,13 @@ const PublicNavBar = ({handleSearchTermChange,searchTerm,handleSelect}) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/">
+          <Nav.Link className="nav-menu" as={Link} to="/">
             Currently Playing
           </Nav.Link>
-          <Nav.Link as={Link} to="/movie/upcoming">
+          <Nav.Link className="nav-menu" as={Link} to="/movie/upcoming">
             Upcoming
           </Nav.Link>
-          <Nav.Link as={Link} to="/movie/top_rated">
+          <Nav.Link className="nav-menu" as={Link} to="/movie/top_rated">
             Top Rated
           </Nav.Link>
           <NavDropdown title="Sort" id="basic-nav-dropdown" onSelect={handleSelect}>

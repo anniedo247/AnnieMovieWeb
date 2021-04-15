@@ -121,11 +121,11 @@ const MovieList = ({ type }) => {
         />
         Rating
       </div>
-
+      
       <Container className="d-flex flex-wrap justify-content-between mb-5">
         {filterMovies.map((movie) => (
           <div onClick={() => movieDetail(movie.id)}>
-            <Card key={movie.id} className=" mt-5" style={{ width: "18em" }}>
+            <Card key={movie.id} className=" mt-5" style={{ width: "18em" , cursor:"pointer"}}>
               <Card.Img
                 variant="top"
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
