@@ -7,12 +7,14 @@ import InputRange from "react-input-range";
 import "react-input-range/lib/css/index.css";
 import PublicNavBar from "../components/PublicNavBar";
 import Header from "../components/Header";
+import CarouselMovie from "../components/CarouselMovie";
 
 const API_KEY = process.env.REACT_APP_TMDB_API_KEY;
 const API_URL = process.env.REACT_APP_TMDB_API_URL;
 
 const MovieList = ({ type }) => {
   const [movies, setMovies] = useState([]);
+  const [latestMovies, setLatestMovies] = useState([]);
   const [pageNum, setPageNum] = useState(1);
   const [totalPageNum, setTotalPageNum] = useState(1);
   const [ratingVal, setRatingVal] = useState({ min: 0, max: 10 });
@@ -49,6 +51,21 @@ const MovieList = ({ type }) => {
     setSearchTerm(e.target.value);
     console.log(e.target.value);
   };
+  useEffect(()=>{
+    async function fetchData() {
+        const url = `${API_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+        const response = await fetch(url);
+        const data = await response.json();
+        setLatestMovies(data.results.slice(0,3));
+        if(type==='top_rated'){
+            setLatestMovies(data.results.slice(4,7));
+        }
+        if(type==='upcoming'){
+            setLatestMovies(data.results.slice(8,11));
+        }
+      };
+      fetchData();
+},[type])
   useEffect(() => {
     const newMovies = movies.filter((m) =>
       m.title.toLowerCase().startsWith(searchTerm.toLowerCase())
@@ -93,7 +110,7 @@ const MovieList = ({ type }) => {
         searchTerm={searchTerm}
         handleSelect={handleSelectSort}
       />
-      <Header/>
+      <CarouselMovie movies={latestMovies}/>
 
       <div className="range">
         <InputRange
